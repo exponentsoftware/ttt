@@ -1,0 +1,27 @@
+<div class="site-content">
+
+  <div class="site-content-cap clearfix">
+    <% if @organizations.present? %>
+      <%= link_to new_organization_path, class: 'btn btn-primary float-right', role: 'button' do %>
+        <%= t('views.organizations.new_classroom') %>
+      <% end %>
+    <% end %>
+    <h2 class="site-content-heading float-left"><%= t('views.organizations.classrooms') %></h2>
+  </div>
+
+  <div class="site-content-body organization-list-items">
+    <% if @organizations.present? %>
+      <%= render @organizations %>
+      <%= render partial: 'shared/pagination', locals: { collection: @organizations } %>
+    <% else %>
+      <div class="blankslate large-format spacious clean-background">
+        <h3><%= t('views.organizations.no_classrooms') %></h3>
+        <p><%= t('views.organizations.no_classrooms_desc') %></p>
+
+        <%= link_to new_organization_path, class: 'btn btn-primary btn-big', role: 'button' do %>
+          <%= t('views.organizations.create_first_classroom') %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

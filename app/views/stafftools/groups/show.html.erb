@@ -1,0 +1,62 @@
+<div class="site-content">
+  <div class="d-flex flex-md-row flex-items-center stafftools-page-header">
+    <div class="col-1">
+      <span class="assignment-icon assignment-icon-group left">
+        <%= octicon 'organization', height: 22 %>
+      </span>
+    </div>
+
+    <div class="col-10 col-md-10 d-flex flex-column">
+      <h2 class="stafftools-heading">
+        <%= @group.title %>
+      </h2>
+
+      <p class="assignment-type text-gray"><%= t('views.stafftools.groups.group') %></p>
+    </div>
+  </div>
+
+  <div class="boxed-group">
+    <h3>Info</h3>
+
+    <div class="boxed-group-inner">
+      <table>
+        <tr>
+          <td class="text-emphasized"><%= t('views.stafftools.groups.id') %></td>
+          <td><%= @group.id %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized"><%= t('views.stafftools.groups.owner') %></td>
+          <td><%= link_to @group.organization.title, stafftools_organization_path(@group.organization.id) %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized"><%= t('views.stafftools.groups.grouping') %></td>
+          <td><%= link_to @group.grouping.title, stafftools_grouping_path(@group.grouping.id) %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized"><%= t('views.stafftools.groups.github_url') %></td>
+          <td><%= link_to @group.github_team.html_url, @group.github_team.html_url %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized"><%= t('views.stafftools.groups.created_on') %></td>
+          <td><%= local_time(@group.created_at) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <% if @group.repo_accesses.present? %>
+    <div class="boxed-group">
+      <h3><%= t('views.stafftools.groups.team_members') %></h3>
+
+      <div class="boxed-group-inner">
+        <ul class="boxed-group-list standalone">
+          <% @group.repo_accesses.each do |repo_access| %>
+            <li class="clearfix">
+              <%= render partial: 'stafftools/organizations/user', locals: { user: repo_access.user } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

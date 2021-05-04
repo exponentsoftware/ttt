@@ -1,0 +1,55 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+
+Rails:
+  Enabled: true
+
+TrailingBlankLines:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 120
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/routes.rb'
+    - 'config/environments/*.rb'
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_auth_hash
+
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - test
+    - staging
+    - production
+
+Style/FileName:
+  Exclude:
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'Brewfile'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

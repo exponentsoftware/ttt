@@ -1,0 +1,52 @@
+<div class="site-content">
+  <div class="d-flex flex-md-row flex-items-center stafftools-page-header">
+    <div class="col-1 d-flex">
+      <span class="assignment-icon assignment-icon-group">
+        <%= octicon 'organization', height: 22 %>
+      </span>
+    </div>
+
+    <div class="col-10 col-md-10 d-flex flex-column">
+      <h2 class="stafftools-heading">
+        <%= @grouping.title %>
+      </h2>
+
+      <p class="assignment-type text-gray">Grouping</p>
+    </div>
+  </div>
+
+  <div class="boxed-group">
+    <h3>Grouping information</h3>
+
+    <div class="boxed-group-inner">
+      <% organization = @grouping.organization %>
+
+      <table>
+        <tr>
+          <td class="text-emphasized">ID</td>
+          <td><%= @grouping.id %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized">Owned by</td>
+          <td><%= link_to organization.title, stafftools_organization_path(organization.id) %></td>
+        </tr>
+        <tr>
+          <td class="text-emphasized">Created on</td>
+          <td><%= local_time(@grouping.created_at) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <% if @grouping.groups.present? %>
+    <div class="boxed-group">
+      <h3>Groups</h3>
+
+      <div class="boxed-group-inner">
+        <ul class="boxed-group-list standalone">
+          <%= render partial: 'stafftools/groupings/group', collection: @grouping.groups %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

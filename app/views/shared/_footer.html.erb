@@ -1,0 +1,10 @@
+<footer class="site-footer text-center">
+  <div class="container-lg">
+    <div class="made-with-heart">
+      <%= raw I18n.t("views.shared.with_love_by_github", octicon_mortar_board: octicon('mortar-board'),
+      octicon_heart: octicon('heart'), href: link_to(octicon('logo-github'), 'https://education.github.com')) %>
+    </div>
+  </div>
+  <%= raw t("views.shared.classroom_is_open_source",
+  href: link_to(t("views.shared.open_source_href"), 'https://github.com/education/classroom')) %>
+</footer>
